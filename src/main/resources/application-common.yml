@@ -2,7 +2,7 @@
 mail:
   server:
     username: cdistc@163.com
-    password: cd123321
+    password: xxxx
     debug: true
     auth: true
     protocol: smtp
