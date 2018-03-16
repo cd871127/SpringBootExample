@@ -1,0 +1,11 @@
+#通用配置文件
+mail:
+  server:
+    username: cdistc@163.com
+    password: cd123321
+    debug: true
+    auth: true
+    protocol: smtp
+    server: smtp.163.com
+  client:
+    sender: cdistc@163.com

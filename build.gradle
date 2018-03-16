@@ -1,0 +1,73 @@
+group 'com.anthony'
+version '0.0.1'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+buildscript {
+    repositories {
+        maven{
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.RELEASE")
+    }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    maven {
+        url 'http://maven.aliyun.com/nexus/content/groups/public/'
+    }
+}
+
+ext{
+    mavenRepo = "http://maven.aliyun.com/nexus/content/groups/public/"
+    SPRING_BOOT_VERSION='2.0.0.RELEASE'
+    MYSQL_DRIVER_VERSION = '8.0.9-rc'
+    MYBATIS_VERSION = '1.3.2'
+    HIKARICP_VERSION = '2.7.8'
+    SLF4J_VERSION = '1.7.25'
+    LOGBACK_VERSION = '1.2.3'
+    JUNIT_VERSION = '4.12'
+    MAIL_VERSION = '1.6.1'
+}
+
+[compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:${SPRING_BOOT_VERSION}")
+    compile("org.springframework.boot:spring-boot-configuration-processor:${SPRING_BOOT_VERSION}")
+//    compile("org.springframework.boot:spring-boot-starter:${SPRING_BOOT_VERSION}")
+
+    //redis
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: SPRING_BOOT_VERSION
+
+    //mybatis
+    compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: MYBATIS_VERSION
+    //mysql
+    compile group: 'mysql', name: 'mysql-connector-java', version: MYSQL_DRIVER_VERSION
+
+    //connection pool
+    compile group: 'com.zaxxer', name: 'HikariCP', version: HIKARICP_VERSION
+
+    //log
+    compile group: 'org.slf4j', name: 'slf4j-api', version: SLF4J_VERSION
+    compile group: 'ch.qos.logback', name: 'logback-core', version: LOGBACK_VERSION
+
+    //sha1、base64
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.11'
+
+    //mail
+    compile group: 'javax.mail', name: 'javax.mail-api', version: MAIL_VERSION
+    compile group: 'com.sun.mail', name: 'javax.mail', version: MAIL_VERSION
+
+    //test
+    testCompile group: 'ch.qos.logback', name: 'logback-classic', version: LOGBACK_VERSION
+    testCompile group: 'junit', name: 'junit', version: JUNIT_VERSION
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: SPRING_BOOT_VERSION
+}
