@@ -1,11 +1,17 @@
 package com.anthony.filter;
 
+import com.anthony.demo.TestComponent;
+
+import javax.annotation.Resource;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
 @WebFilter(filterName = "testFilter", urlPatterns = "/*")
 public class TestFilter implements Filter {
+    @Resource
+    private TestComponent testComponent;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -13,9 +19,7 @@ public class TestFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        System.out.println("**********************");
-        System.out.println("test filter");
-        System.out.println("**********************");
+        testComponent.println();
         chain.doFilter(request,response);
     }
 

@@ -1,0 +1,47 @@
+server:
+  port: ${spring-boot-example.server.port}
+
+spring:
+  profiles:
+    active: dev
+    include: common
+  application:
+    name: SpringBootExample
+  http:
+    encoding:
+      force: true
+      charset: utf-8 #http请求的字符编码
+      enabled: true
+      force-request: true
+      force-response: true
+  servlet:
+    multipart:
+      enabled: true
+      resolve-lazily: true
+      max-file-size: 16384MB
+      max-request-size: 16384MB
+  datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: ${spring-boot-example.database.mysql.url}
+      username: ${spring-boot-example.database.mysql.username}
+      password: ${spring-boot-example.database.mysql.password}
+      type: com.zaxxer.hikari.HikariDataSource
+  redis:
+    database: ${spring-boot-example.redis.database}
+    host: ${spring-boot-example.redis.host}
+    port: ${spring-boot-example.redis.port}
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+mybatis:
+  mapper-locations: classpath:sql-map/*.xml
+  type-aliases-package: com.anthony.user.dto
+
+logging:
+  level:
+    com.anthony: debug
+
+

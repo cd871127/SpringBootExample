@@ -9,3 +9,7 @@ mail:
     server: smtp.163.com
   client:
     sender: cdistc@163.com
+
+
+mysql:
+  schema: pdc

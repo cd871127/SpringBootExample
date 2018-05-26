@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anthony.user.mapper.UserMapper">
+
+    <select id="getUserDTO" parameterType="java.lang.String" resultType="userDTO">
+        select user_id userId,nick_name nickName,pass_word passWord from user_info_tbl
+        <trim prefix="WHERE">
+            <trim prefixOverrides="and">
+                <if test="_parameter!=null">
+                    and user_id = #{_parameter}
+                </if>
+            </trim>
+        </trim>
+    </select>
+
+    <insert id="addUserDTO" parameterType="userDTO">
+        insert into user_info_tbl(user_id, nick_name, pass_word)
+                values (#{userId},#{nickName},PASSWORD(#{passWord}))
+    </insert>
+
+    <delete id="deleteUserDTO" parameterType="java.lang.String">
+        delete from user_info_tbl where user_id=#{_parameter}
+    </delete>
+
+</mapper>

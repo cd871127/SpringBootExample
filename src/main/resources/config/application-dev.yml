@@ -1,11 +1,8 @@
-mysql:
-  schema: pdc
-
-server:
-  port: 18888
-
-spring:
-  datasource:
+spring-boot-example:
+  server:
+    port: 18888
+  database:
+    mysql:
       url: jdbc:mysql://localhost:3306/${mysql.schema}?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&useSSL=false
       username: cdistc
       password: cd123321
@@ -13,6 +10,7 @@ spring:
     database: 0
     host: 127.0.0.1
     port: 6379
+
 
 #context:
 #  listener:
