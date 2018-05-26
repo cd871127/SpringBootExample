@@ -3,6 +3,9 @@ package com.anthony.controller;
 
 import com.anthony.mail.MailConfig;
 import com.anthony.mail.MailServer;
+import com.anthony.service.BService;
+import com.anthony.service.TestService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +23,16 @@ public class TestRestController {
     @Resource
     private MailConfig mailConfig;
 
+    @Qualifier("AService")
+    @Resource
+    private TestService testService;
+
     @Value("${mail.client.sender}")
     private String sender;
 
     @RequestMapping("helloWorld")
     public String helloWorld() {
+        testService.whoami();
         return mailConfig.toString();
     }
 
@@ -38,4 +46,6 @@ public class TestRestController {
         }
         return "ok";
     }
+
+
 }

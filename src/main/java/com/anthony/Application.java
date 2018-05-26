@@ -9,6 +9,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 @ServletComponentScan("com.anthony.**.filter")
 @MapperScan("com.anthony.**.mapper")
 public class Application {
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
